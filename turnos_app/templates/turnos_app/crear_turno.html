@@ -1,0 +1,17 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Nuevo Turno</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post" class="mt-4">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">
+        Guardar turno
+    </button>
+</form>
+{% endblock contenido %}

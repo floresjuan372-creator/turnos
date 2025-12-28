@@ -1,0 +1,63 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Turnos</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 style="color:#e0e0e0;">Listado de turnos</h2>
+
+        <a href="{% url 'crear_turno' %}" class="btn btn-success">
+            Nuevo turno
+        </a>
+    </div>
+
+    <table class="table table-hover table-dark" style="color:#d6d6d6;">
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Paciente</th>
+                <th>Profesional</th>
+                <th>Especialidad</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for t in turnos %}
+            <tr>
+                <td>{{ t.fecha }}</td>
+                <td>{{ t.hora }}</td>
+                <td>{{ t.paciente }}</td>
+                <td>{{ t.profesional }}</td>
+                <td>{{ t.especialidad }}</td>
+                <td>{{ t.get_estado_display }}</td>
+                <td>
+                    <a href="{% url 'turnoUpdate' t.id %}" 
+                    class="btn btn-primary"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                    ><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+
+                    <a href="{% url 'turnoDelete' t.id %}" 
+                    class="btn btn-danger"
+                    style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"
+                    ><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                  </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No hay turnos registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock contenido %}

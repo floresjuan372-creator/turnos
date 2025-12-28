@@ -1,0 +1,26 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Eliminar turno</h1>
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-4 text-center">
+    <p>
+        ¿Estás seguro que querés eliminar el turno de
+        <strong>{{ turno.paciente }}</strong>
+        el día <strong>{{ turno.fecha }}</strong>
+        a las <strong>{{ turno.hora }}</strong>?
+    </p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">
+            Sí, eliminar
+        </button>
+        <a href="{% url 'turnos' %}" class="btn btn-secondary">
+            Cancelar
+        </a>
+    </form>
+</div>
+{% endblock %}

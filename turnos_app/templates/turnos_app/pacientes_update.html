@@ -1,0 +1,14 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h2>Editar paciente</h2>
+{% endblock titulo %}
+
+{% block contenido %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a href="{% url 'pacientes' %}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock contenido %}

@@ -1,0 +1,46 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Pacientes</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <a href="{% url 'crear_paciente' %}" class="btn btn-success mb-3">
+        Nuevo paciente
+    </a>
+
+    <table class="table table-hover table-dark" style="color:#d6d6d6;">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in pacientes %}
+            <tr>
+                <td>{{ p }}</td>
+                <td>
+                    <a href="{% url 'paciente_update' p.id %}" 
+                       class="btn btn-warning btn-sm">
+                        Editar
+                    </a>
+
+                    <a href="{% url 'paciente_delete' p.id %}" 
+                       class="btn btn-danger btn-sm">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">No hay pacientes cargados</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenido %}
