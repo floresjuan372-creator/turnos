@@ -53,3 +53,16 @@ class TurnoForm(forms.ModelForm):
                 )
 
         return cleaned_data
+
+
+class ProfesionalForm(forms.ModelForm):
+    class Meta:
+        model = Profesional
+        fields = [
+            'nombre',
+            'apellido',
+            'matricula',
+            'especialidad',
+            'email',
+            'activo'
+        ]

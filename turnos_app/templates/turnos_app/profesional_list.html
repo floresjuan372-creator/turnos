@@ -1,0 +1,41 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Profesionales</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    Listado de profesionales habilitados
+</h2>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Apellido y Nombre</th>
+                <th>Especialidad</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesional in profesionales %}
+            <tr>
+                <td>{{ profesional.apellido }}, {{ profesional.nombre }}</td>
+                <td>{{ profesional.especialidad }}</td>
+                <td>{{ profesional.matricula }}</td>
+                <td>{{ profesional.email|default:"—" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center text-muted">
+                    No hay profesionales cargados
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenido %}

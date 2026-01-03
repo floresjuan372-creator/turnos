@@ -1,0 +1,57 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">
+    {% if object %}Editar Paciente{% else %}Nuevo Paciente{% endif %}
+</h1>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <!-- CLASE CONTENEDORA -->
+    <div class="form-dark">
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">
+                Guardar
+            </button>
+
+            <a href="{% url 'paciente_list' %}" class="btn btn-secondary">
+                Cancelar
+            </a>
+        </form>
+
+    </div>
+</div>
+
+<!-- ESTILO SOLO PARA ESTE FORM -->
+<style>
+.form-dark .form-control,
+.form-dark .form-select {
+    background-color: #212529;
+    color: #f8f9fa;
+    border: 1px solid #495057;
+}
+
+.form-dark .form-control::placeholder {
+    color: #adb5bd;
+}
+
+.form-dark .form-control:focus,
+.form-dark .form-select:focus {
+    background-color: #212529;
+    color: #f8f9fa;
+    border-color: #0d6efd;
+    box-shadow: none;
+}
+
+.form-dark label {
+    color: #f8f9fa;
+}
+</style>
+
+{% endblock contenido %}

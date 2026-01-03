@@ -1,0 +1,18 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Buscar turnos</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    Gestión de turnos
+</h2>
+{% endblock titulo %}
+
+{% block contenido %}
+<form action="{% url 'encontrar_turnos' %}" method="get">
+
+    <p>Ingrese patrón de búsqueda</p>
+    <input type="text" name="buscar" id="buscar">
+
+    <input type="submit" value="Buscar" class="btn btn-primary">
+</form>
+{% endblock contenido %}

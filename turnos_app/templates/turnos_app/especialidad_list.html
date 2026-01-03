@@ -1,0 +1,37 @@
+{% extends 'turnos_app/index.html' %}
+
+{% block titulo %}
+<h1 class="mx-auto my-0 text-uppercase">Especialidades</h1>
+<h2 class="text-white-50 mx-auto mt-2 mb-5">
+    Especialidades disponibles
+</h2>
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="container mt-4">
+
+    <table class="table table-dark table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for especialidad in especialidades %}
+            <tr>
+                <td>{{ especialidad.nombre }}</td>
+                <td>{{ especialidad.descripcion|default:"—" }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2" class="text-center text-muted">
+                    No hay especialidades cargadas
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenido %}
