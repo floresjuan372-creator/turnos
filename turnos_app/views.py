@@ -8,8 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.db.models import Q
-
-
+from django.contrib.auth import authenticate, login
 
 
 
@@ -271,7 +270,7 @@ def encontrar_turnos(request):
             {'respuesta': respuesta}
         )
 
-# login / logaut
+# login / logaut / registration
 
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
@@ -280,3 +279,65 @@ class CustomLoginView(LoginView):
 
     def get_success_url(self):
         return reverse_lazy('inicio')
+    
+
+def register(request):
+    if request.method == 'POST':
+        form = registroform(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')   
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect('inicio') 
+    else:
+        form = registroform()
+    
+    return render(request, 'registration/register.html', {'form': form})
+
+@login_required
+def perfil(request):
+    # aseguramos que exista el profile
+    Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = profileform(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')
+    else:
+        form = profileform(instance=request.user)
+
+    return render(request, 'registration/perfil.html', {'form': form})
+
+
+@login_required
+def perfil(request):
+    # aseguramos que exista el profile
+    Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = profileform(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')
+    else:
+        form = profileform(instance=request.user)
+
+    return render(request, 'registration/perfil.html', {'form': form})
+
+
+@login_required
+def avatar(request):
+    perfil, _ = Profile.objects.get_or_create(user=request.user)
+
+    if request.method == 'POST':
+        form = avatarform(request.POST, request.FILES, instance=perfil)
+        if form.is_valid():
+            form.save()
+            return redirect('perfil')
+    else:
+        form = avatarform(instance=perfil)
+
+    return render(request, 'registration/avatar.html', {'form': form})

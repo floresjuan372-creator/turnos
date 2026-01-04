@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -82,3 +83,10 @@ class Turno(models.Model):
 
     def __str__(self):
         return f"{self.fecha} {self.hora} - {self.paciente} con {self.profesional}"
+    
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    avatar = models.ImageField(upload_to='avatars/', default="avatar/default.png", blank=True)
+

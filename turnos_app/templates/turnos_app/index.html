@@ -34,14 +34,23 @@
                 
                     <span class="navbar-text me-3">
                     {{ user.username }} {{ user.first_name }} {{ user.last_name }}</span>
+                    </span>
 
-                    
+                    <div class="text-center"> 
+                         <a href="{% url 'perfil' %}">
+                         <img src="{{ user.profile.avatar.url }}" height="40" width="40">
+                         </a>
+                    </div>
+
+                        <a class="btn btn-success" href="{% url 'perfil' %}">Perfil</a>
+
                     <form action="{% url 'logout' %}" method="post">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-primary">Logout</button>
                     </form>
                 {% else %}
                     <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+                    <a class="btn btn-success" href="{% url 'register' %}">Registrarse</a>
                 {% endif %}
             </div>
         </nav>

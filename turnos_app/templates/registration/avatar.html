@@ -1,0 +1,36 @@
+{% extends "turnos_app/index.html" %}
+
+{% block titulo %}
+<h1 class="text-uppercase text-white">Foto de perfil</h1>
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+
+            <div class="card p-4 shadow text-center">
+
+                <h4 class="mb-3">Avatar actual</h4>
+
+                <img src="{{ user.profile.avatar.url }}"
+                     class="rounded-circle mb-3"
+                     width="120"
+                     height="120"
+                     alt="Avatar">
+
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Actualizar foto
+                    </button>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
