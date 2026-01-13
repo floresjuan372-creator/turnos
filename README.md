@@ -11,3 +11,4 @@ El sistema cuenta con:
 - Panel de administración para gestión completa del sistema
 
 La aplicación está pensada para facilitar la organización de turnos y mejorar la experiencia tanto de pacientes como de administradores.
+Para ver el video demostrativo de la aplicacion ingrese a este link: https://drive.google.com/drive/folders/1J2KsUXaBwvo3-wXptMzGMRlRSN5f8a4m
