@@ -13,11 +13,19 @@
 
                 <h4 class="mb-3">Avatar actual</h4>
 
-                <img src="{{ user.profile.avatar.url }}"
-                     class="rounded-circle mb-3"
-                     width="120"
-                     height="120"
-                     alt="Avatar">
+                {% if user.is_authenticated and user.profile and user.profile.avatar %}
+                    <img src="{{ user.profile.avatar.url }}"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120"
+                         alt="Avatar">
+                {% else %}
+                    <img src="/media/avatars/default.jpg"
+                         class="rounded-circle mb-3"
+                         width="120"
+                         height="120"
+                         alt="Avatar por defecto">
+                {% endif %}
 
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}

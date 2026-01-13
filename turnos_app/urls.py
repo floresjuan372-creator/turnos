@@ -7,50 +7,19 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('', inicio, name='inicio'),  # Ruta raíz redirige al admin
    
-   
-    #path('turnos/', turnos, name='turnos'),
-    #path('crear_turno/', crear_turno, name='crear_turno'),
-    #path('turnoUpdate/<int:id>/', turnoUpdate, name='turnoUpdate'),
-    #path('turnoDelete/<int:id>/', turnoDelete, name='turnoDelete'),
-    
-
     path("turnos/", TurnoListView.as_view(), name="turno_list"),
     path("turnos/nuevo/", TurnoCreateView.as_view(), name="turno_create"),
     path("turnos/editar/<int:pk>/", TurnoUpdateView.as_view(), name="turno_update"),
     path("turnos/eliminar/<int:pk>/", TurnoDeleteView.as_view(), name="turno_delete"),
 
-
-
-    
-    
-    #path('profesionales/', profesionales, name='profesionales'),
-
-
     path("profesionales/", ProfesionalListView.as_view(), name="profesional_list"),
   
-
-
-
-    #path('pacientes/', pacientes, name='pacientes'),
-    #path('lista_pacientes/', lista_pacientes, name='lista_pacientes'),
-    #path('crear_paciente/', crear_paciente, name='crear_paciente'),
-    #path('pacienteUpdate/<int:id>/', pacienteUpdate, name='paciente_update'),
-    #path('pacienteDelete/<int:id>/', pacienteDelete, name='paciente_delete'),  
-
-
     path("pacientes/", PacienteListView.as_view(), name="paciente_list"),
     path("pacientes/nuevo/", PacienteCreateView.as_view(), name="paciente_create"),
     path("pacientes/<int:pk>/editar/", PacienteUpdateView.as_view(), name="paciente_update"),
     path("pacientes/<int:pk>/eliminar/", PacienteDeleteView.as_view(), name="paciente_delete"),
 
-
-
-
-
-    #path('especialidades/', especialidades, name='especialidades'),
-
     path('especialidades/', EspecialidadListView.as_view(), name='especialidad_list'),
-
 
     # Buscar turnos
     path('buscar_turnos/', buscar_turnos, name='buscar_turnos'),

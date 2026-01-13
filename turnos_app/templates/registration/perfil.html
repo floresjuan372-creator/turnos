@@ -14,9 +14,16 @@
 
                 <form method="post">
                     {% csrf_token %}
-                    {{ form.as_p }}
 
-                    <button type="submit" class="btn btn-primary w-100">
+                    <h5 class="mt-3">Datos de usuario</h5>
+                    {{ user_form.as_p }}
+
+                    <hr>
+
+                    <h5 class="mt-3">Datos del paciente</h5>
+                    {{ paciente_form.as_p }}
+
+                    <button type="submit" class="btn btn-primary w-100 mt-3">
                         Guardar cambios
                     </button>
                 </form>
